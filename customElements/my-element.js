@@ -17,7 +17,7 @@ template.innerHTML = `
 //Las clases no deben tener separacion, casi siempre se utiliza camelCase
 //HTMLElement es la API que nos ayuda con los custom elements
 class myElement extends HTMLElement{
-    constructor(params) {
+    constructor() {
         //Como estamos heredando de una clase necesitamos el método super
         //Aquí es donde se guarda en memoria para después agregarlos al DOM
         super();
