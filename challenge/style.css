@@ -9,3 +9,11 @@ html{
 body{
     background-color: #2d333b;
 }
+card-product {
+    --primary-color: #5a6cb2;
+    --secondary-color: #46538a;
+}
+card-product.orange {
+    --primary-color: #b4b98a;
+    --secondary-color: #dde3a3;
+}

@@ -4,7 +4,7 @@ class cardProduct extends HTMLElement{
         this.attachShadow({ mode:'open' });
     }
     static get observedAttributes() {
-        return [ 'img', 'price' ];
+        return [ 'img', 'price', 'brand', 'product' ];
     }
     attributeChangedCallback(attr, oldValue, newValue) {
         const changeValue = oldValue !== newValue;
@@ -13,6 +13,12 @@ class cardProduct extends HTMLElement{
         }
         if(attr === 'price' && changeValue) {
             this.price = newValue;
+        }
+        if(attr === 'brand' && changeValue) {
+            this.brand = newValue;
+        }
+        if(attr === 'product' && changeValue) {
+            this.product = newValue;
         }
     }
     getTemplate() {
@@ -24,13 +30,13 @@ class cardProduct extends HTMLElement{
         template.innerHTML = `
             <section class="container">
                 <section class="show-product">
-                    <h1><slot name="brand"></slot></h1>
+                    <h1>${this.brand}</slot></h1>
                     <figure>
                         <img src="${this.img}">
                     </figure>
                 </section>
                 <section class="description-product">
-                    <h2><slot name="product"></slot></h2>
+                    <h2>${this.product}</h2>
                     <h3><slot name="collection"></slot></h3>
                     <p><slot name="description"></slot></p>
                     <section class="buy-product">
@@ -47,10 +53,10 @@ class cardProduct extends HTMLElement{
         return `
             <style>
                 :host {
-                    --primary-color: #5a6cb2;
-                    --secondary-color: #46538a;
-                    --third-color: #efefef;
+                    --primary-color: #efefef;
+                    --secondary-color: #000;
                     --fourth-color: gray;
+                    --white: #efefef;
                     --font-family: Arial, sans-serif;
                     --font-color: #000;
                     font-family: var(--font-family);
@@ -58,6 +64,13 @@ class cardProduct extends HTMLElement{
                 }
                 h1, h2, h3{
                     margin: 0;
+                }
+                .container{
+                    width: 90%;
+                    margin: auto;
+                    padding: 10px 0;
+                    display: flex;
+                    flex-direction: column;
                 }
                 .show-product{
                     width: 100%;
@@ -78,7 +91,7 @@ class cardProduct extends HTMLElement{
                     height: 100%;
                 }
                 .description-product {
-                    background: var(--third-color);
+                    background: var(--white);
                     padding: 20px;
                 }
                 .description-product h2{
@@ -107,10 +120,32 @@ class cardProduct extends HTMLElement{
                     outline: none;
                     border-radius: 4rem;
                     padding: 0.8rem 1rem;
-                    color: var(--third-color);
+                    color: var(--white);
                     font-weight: bold;
                     text-transform: uppercase;
                     background: var(--primary-color);
+                }
+                @media screen and (min-width: 600px){
+                    .container {
+                        flex-direction: row;
+                    }
+                    .show-product{
+                        width: 50%;
+                    }
+                    .description-product{
+                        width: 50%;
+                    }
+                }
+                @media screen and (min-width: 800px){
+                    .container {
+                        width: 60%;
+                    }
+                    .show-product figure{
+                        transform: rotate(-30deg) scale(1.2);
+                    }
+                    .description-product {
+                        padding: 4rem;
+                    }
                 }
             </style>
         `;
