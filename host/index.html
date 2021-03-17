@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Aprendiendo la pseudo clase host para estilos">
+    <meta name="robots" content="index,follow">
+    <title>:host</title>
+</head>
+<body>
+    <h1>Holanda</h1>
+    <my-component
+    msg='Hola'
+    description='El riac'>
+    </my-component>
+    <my-component
+    msg='Svelte'
+    description='Deja el riac'
+    class='blue'>
+    </my-component>
+    <my-component
+    msg='Angular'
+    description='Ya superalo no manches'
+    yellow>
+    </my-component>
+    <article class="card">
+        <my-component
+        msg='Vue'
+        description='Tienes potencial viejo'>
+        </my-component>
+    </article>
+    <script src="./app.js" type="module"></script>
+</body>
+</html>
