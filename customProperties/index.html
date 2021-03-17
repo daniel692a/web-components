@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Utilizando Custom Properties de CSS">
+    <meta name="robots" content="index,follow">
+    <title>Custom Properties de CSS</title>
+    <style>
+        my-component{
+            --radius: 1rem;
+            --primary-color: rgba(250, 154, 28, 0.5);
+        }
+        my-component.vue{
+            --primary-color: rgba(42, 126, 31, 0.5);
+        }
+        my-component.preact{
+            --primary-color: rgba(177, 53, 177, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <h1>Web Components con Vanilla JavaScript</h1>
+    <my-component>
+        <span slot="text-title">Svelte</span>
+        <span slot="text-desc">Compilación</span>
+    </my-component>
+    <my-component class="vue">
+        <span slot="text-title">Vue</span>
+        <span slot="text-desc">Framework de comunidad</span>
+    </my-component>
+    <my-component class="preact">
+        <span slot="text-title">Preact</span>
+        <span slot="text-desc">Librería basada en React</span>
+    </my-component>
+    <script src="./app.js" type="module"></script>
+</body>
+</html>
