@@ -4,7 +4,7 @@ class cardProduct extends HTMLElement{
         this.attachShadow({ mode:'open' });
     }
     static get observedAttributes() {
-        return [ 'img', 'price', 'brand', 'product' ];
+        return [ 'img', 'price', 'brand', 'product', 'format-price' ];
     }
     attributeChangedCallback(attr, oldValue, newValue) {
         const changeValue = oldValue !== newValue;
@@ -20,12 +20,15 @@ class cardProduct extends HTMLElement{
         if(attr === 'product' && changeValue) {
             this.product = newValue;
         }
+        if(attr === 'format-price' && changeValue) {
+            this.formatPrice = newValue;
+        }
     }
     getTemplate() {
         const template = document.createElement('template');
         const formatPrice = Intl.NumberFormat('en',{
             style: 'currency',
-            currency: 'USD',
+            currency: `${this.formatPrice}`,
         }).format(this.price);
         template.innerHTML = `
             <section class="container">
@@ -141,7 +144,7 @@ class cardProduct extends HTMLElement{
                         width: 60%;
                     }
                     .show-product figure{
-                        transform: rotate(-30deg) scale(1.2);
+                        transform: rotate(-30deg) scale(1.3);
                     }
                     .description-product {
                         padding: 4rem;
